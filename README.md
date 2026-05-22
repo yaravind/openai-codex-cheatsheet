@@ -8,7 +8,8 @@ Open `index.html` in a browser.
 
 ## Deployment
 
-The site is deployed with GitHub Actions via `.github/workflows/deploy-pages.yml`.
+The site is deployed with GitHub Actions via
+[`deploy-pages.yml`](.github/workflows/deploy-pages.yml).
 
 - Trigger: push to `main` or manual workflow dispatch
 - Publish target: GitHub Pages
