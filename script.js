@@ -38,7 +38,10 @@ function setTheme(theme) {
 }
 
 themeToggle?.addEventListener("click", () => {
-  const current = document.documentElement.dataset.theme || "dark";
+  const current =
+    document.documentElement.dataset.theme ||
+    localStorage.getItem("theme") ||
+    (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
   setTheme(current === "dark" ? "light" : "dark");
 });
 
