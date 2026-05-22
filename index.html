@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Codex Cheatsheet — App + CLI</title>
+    <meta
+      name="description"
+      content="A fast cheatsheet for Codex App and Codex CLI workflows, commands, and prompts."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="hero">
+      <div class="hero-inner">
+        <p class="eyebrow">OpenAI Codex</p>
+        <h1>Codex Cheatsheet</h1>
+        <p class="subtitle">
+          Practical quick-reference for <strong>Codex App</strong> and
+          <strong>Codex CLI</strong>, optimized for speed.
+        </p>
+        <div class="toolbar">
+          <label class="search-wrap" for="search">
+            <span>Search</span>
+            <input
+              id="search"
+              type="search"
+              placeholder="Find commands, prompts, or workflows…"
+              autocomplete="off"
+            />
+          </label>
+          <fieldset class="filters" aria-label="Filter cards">
+            <legend>Show</legend>
+            <label><input type="checkbox" value="app" checked /> App</label>
+            <label><input type="checkbox" value="cli" checked /> CLI</label>
+            <label
+              ><input type="checkbox" value="workflow" checked /> Workflow</label
+            >
+          </fieldset>
+          <button id="theme-toggle" class="ghost-btn" type="button">
+            Toggle theme
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="content" class="layout">
+      <aside class="toc" aria-label="Section navigation">
+        <h2>Quick Nav</h2>
+        <a href="#getting-started">Getting started</a>
+        <a href="#app-cheatsheet">Codex App cheatsheet</a>
+        <a href="#cli-cheatsheet">Codex CLI cheatsheet</a>
+        <a href="#prompt-patterns">Prompt patterns</a>
+        <a href="#git-workflows">Git + PR workflows</a>
+      </aside>
+
+      <section class="content">
+        <section id="getting-started">
+          <h2>Getting started</h2>
+          <div class="card-grid">
+            <article class="card" data-tags="workflow cli app setup">
+              <h3>1) Keep asks specific</h3>
+              <p>
+                Include repo, goal, constraints, and expected output format for
+                better results.
+              </p>
+            </article>
+            <article class="card" data-tags="workflow cli app">
+              <h3>2) Iterate in small steps</h3>
+              <p>
+                Ask for a plan first, then implement in chunks and validate each
+                change.
+              </p>
+            </article>
+            <article class="card" data-tags="workflow cli app">
+              <h3>3) Validate before merge</h3>
+              <p>
+                Run tests/lint/build and review diffs before creating a pull
+                request.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="app-cheatsheet">
+          <h2>Codex App cheatsheet</h2>
+          <div class="card-grid">
+            <article class="card" data-tags="app workflow prompts">
+              <h3>Best prompt starter</h3>
+              <pre><code>Goal:
+Constraints:
+Definition of done:
+Files involved:</code></pre>
+              <button class="copy-btn" data-copy="Goal:
+Constraints:
+Definition of done:
+Files involved:">Copy</button>
+            </article>
+
+            <article class="card" data-tags="app workflow">
+              <h3>Ask for planning mode</h3>
+              <pre><code>Create a step-by-step plan before coding.
+Focus on minimal, safe changes.</code></pre>
+              <button
+                class="copy-btn"
+                data-copy="Create a step-by-step plan before coding.
+Focus on minimal, safe changes."
+              >
+                Copy
+              </button>
+            </article>
+
+            <article class="card" data-tags="app workflow review">
+              <h3>Ask for review summary</h3>
+              <pre><code>Summarize the final diff:
+- What changed
+- Why
+- Risks and rollback</code></pre>
+              <button
+                class="copy-btn"
+                data-copy="Summarize the final diff:
+- What changed
+- Why
+- Risks and rollback"
+              >
+                Copy
+              </button>
+            </article>
+          </div>
+        </section>
+
+        <section id="cli-cheatsheet">
+          <h2>Codex CLI cheatsheet</h2>
+          <div class="card-grid">
+            <article class="card" data-tags="cli workflow">
+              <h3>Start in current repo</h3>
+              <pre><code>codex</code></pre>
+              <button class="copy-btn" data-copy="codex">Copy</button>
+            </article>
+
+            <article class="card" data-tags="cli workflow prompts">
+              <h3>Give a focused task</h3>
+              <pre><code>codex "Implement feature X with tests. Keep changes minimal."</code></pre>
+              <button
+                class="copy-btn"
+                data-copy='codex "Implement feature X with tests. Keep changes minimal."'
+              >
+                Copy
+              </button>
+            </article>
+
+            <article class="card" data-tags="cli workflow">
+              <h3>Ask for a plan first</h3>
+              <pre><code>codex "Create a plan only for adding OAuth login."</code></pre>
+              <button
+                class="copy-btn"
+                data-copy='codex "Create a plan only for adding OAuth login."'
+              >
+                Copy
+              </button>
+            </article>
+
+            <article class="card" data-tags="cli workflow">
+              <h3>Request implementation</h3>
+              <pre><code>codex "Now implement the approved plan and run existing tests."</code></pre>
+              <button
+                class="copy-btn"
+                data-copy='codex "Now implement the approved plan and run existing tests."'
+              >
+                Copy
+              </button>
+            </article>
+
+            <article class="card" data-tags="cli workflow">
+              <h3>Diff-oriented prompt</h3>
+              <pre><code>codex "Review current git diff and suggest improvements."</code></pre>
+              <button
+                class="copy-btn"
+                data-copy='codex "Review current git diff and suggest improvements."'
+              >
+                Copy
+              </button>
+            </article>
+
+            <article class="card" data-tags="cli workflow">
+              <h3>Release checklist prompt</h3>
+              <pre><code>codex "Generate a release checklist from changed files."</code></pre>
+              <button
+                class="copy-btn"
+                data-copy='codex "Generate a release checklist from changed files."'
+              >
+                Copy
+              </button>
+            </article>
+          </div>
+        </section>
+
+        <section id="prompt-patterns">
+          <h2>Prompt patterns that work</h2>
+          <div class="card-grid">
+            <article class="card" data-tags="app cli workflow prompts">
+              <h3>Bug fix prompt</h3>
+              <pre><code>Investigate failing test &lt;name&gt;.
+Find root cause.
+Apply minimal fix.
+Run relevant tests.
+Summarize risk.</code></pre>
+            </article>
+            <article class="card" data-tags="app cli workflow prompts">
+              <h3>Refactor prompt</h3>
+              <pre><code>Refactor module &lt;path&gt; for readability only.
+No behavior changes.
+Keep API stable.
+Run tests.</code></pre>
+            </article>
+            <article class="card" data-tags="app cli workflow prompts">
+              <h3>Feature prompt</h3>
+              <pre><code>Add &lt;feature&gt; behind a flag.
+Add tests and docs.
+Avoid unrelated changes.</code></pre>
+            </article>
+          </div>
+        </section>
+
+        <section id="git-workflows">
+          <h2>Git + PR workflows</h2>
+          <div class="card-grid">
+            <article class="card" data-tags="workflow cli">
+              <h3>Inspect status + diff</h3>
+              <pre><code>git status
+git diff --stat
+git diff</code></pre>
+            </article>
+            <article class="card" data-tags="workflow cli">
+              <h3>Create clean commit</h3>
+              <pre><code>git add -p
+git commit -m "feat: concise description"</code></pre>
+            </article>
+            <article class="card" data-tags="workflow cli">
+              <h3>Pre-PR self-check</h3>
+              <pre><code># run project checks
+# review changed files
+# verify docs if behavior changed</code></pre>
+            </article>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>
+        Built for
+        <a href="https://yaravind.github.io/openai-codex-cheatsheet/"
+          >yaravind/openai-codex-cheatsheet</a
+        >.
+      </p>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
