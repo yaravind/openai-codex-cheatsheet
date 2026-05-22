@@ -3,6 +3,14 @@ const filterInputs = Array.from(document.querySelectorAll('.filters input[type="
 const cards = Array.from(document.querySelectorAll(".card"));
 const themeToggle = document.getElementById("theme-toggle");
 
+function getPreferredTheme() {
+  return (
+    document.documentElement.dataset.theme ||
+    localStorage.getItem("theme") ||
+    (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+  );
+}
+
 function activeFilters() {
   return filterInputs.filter((x) => x.checked).map((x) => x.value);
 }
@@ -38,10 +46,7 @@ function setTheme(theme) {
 }
 
 themeToggle?.addEventListener("click", () => {
-  const current =
-    document.documentElement.dataset.theme ||
-    localStorage.getItem("theme") ||
-    (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  const current = getPreferredTheme();
   setTheme(current === "dark" ? "light" : "dark");
 });
 
@@ -49,13 +54,14 @@ const savedTheme = localStorage.getItem("theme");
 if (savedTheme === "dark" || savedTheme === "light") {
   setTheme(savedTheme);
 } else {
-  setTheme(window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  setTheme(getPreferredTheme());
 }
 
 searchInput?.addEventListener("input", render);
 filterInputs.forEach((input) => input.addEventListener("change", render));
 
 document.querySelectorAll(".copy-btn").forEach((btn) => {
+  btn.setAttribute("aria-live", "polite");
   btn.addEventListener("click", async () => {
     const text = btn.getAttribute("data-copy") || "";
     try {
@@ -68,7 +74,7 @@ document.querySelectorAll(".copy-btn").forEach((btn) => {
         btn.classList.remove("copied");
       }, 1000);
     } catch {
-      btn.textContent = "Copy failed";
+      btn.textContent = "Failed to copy to clipboard";
       setTimeout(() => {
         btn.textContent = "Copy";
       }, 1000);
