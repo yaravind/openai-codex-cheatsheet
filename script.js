@@ -34,7 +34,7 @@
   setTheme(getPreferredTheme());
 
   themeToggle?.addEventListener("click", function () {
-    var current = document.documentElement.dataset.theme || getPreferredTheme();
+    var current = document.documentElement.dataset.theme;
     setTheme(current === "dark" ? "light" : "dark");
   });
 
@@ -73,7 +73,7 @@
     var walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT, null);
     var textNodes = [];
     while (walker.nextNode()) {
-      if (!["PRE", "CODE", "BUTTON", "SCRIPT"].includes(walker.currentNode.parentNode.tagName)) {
+      if (walker.currentNode.parentNode && !["PRE", "CODE", "BUTTON", "SCRIPT"].includes(walker.currentNode.parentNode.tagName)) {
         textNodes.push(walker.currentNode);
       }
     }
