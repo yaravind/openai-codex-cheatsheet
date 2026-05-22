@@ -9,7 +9,7 @@ function activeFilters() {
 
 function shouldShowByFilter(card, filters) {
   if (filters.length === 0) {
-    return false;
+    return true;
   }
   const tags = (card.dataset.tags || "").split(/\s+/);
   return filters.some((filter) => tags.includes(filter));

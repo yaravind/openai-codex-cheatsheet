@@ -4,7 +4,7 @@ A fast, UX-focused cheatsheet site for Codex App and Codex CLI.
 
 ## Local preview
 
-Open `/home/runner/work/openai-codex-cheatsheet/openai-codex-cheatsheet/index.html` in a browser.
+Open `index.html` in a browser.
 
 ## Deployment
 
