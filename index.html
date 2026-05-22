@@ -3,258 +3,826 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Codex Cheatsheet — App + CLI</title>
-    <meta
-      name="description"
-      content="A fast cheatsheet for Codex App and Codex CLI workflows, commands, and prompts."
-    />
+    <title>OpenAI Codex Cheatsheet — App &amp; CLI</title>
+    <meta name="description" content="The ultimate quick-reference for OpenAI Codex App and Codex CLI — every feature, command, and workflow categorized by availability." />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <a class="skip-link" href="#content">Skip to content</a>
+
+    <!-- ════ Floating orbs background ════ -->
+    <div class="orb-canvas" aria-hidden="true">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+
+    <!-- ════ HEADER ════ -->
     <header class="hero">
       <div class="hero-inner">
-        <p class="eyebrow">OpenAI Codex</p>
-        <h1>Codex Cheatsheet</h1>
-        <p class="subtitle">
-          Practical quick-reference for <strong>Codex App</strong> and
-          <strong>Codex CLI</strong>, optimized for speed.
+        <div class="hero-badge">OpenAI Codex</div>
+        <h1 class="hero-title">
+          <span class="gradient-text">Codex</span> Cheatsheet
+        </h1>
+        <p class="hero-sub">
+          Every feature of <strong>Codex App</strong> &amp; <strong>Codex CLI</strong> in one place — categorized, searchable, copy-ready.
         </p>
+
+        <!-- Toolbar -->
         <div class="toolbar">
-          <label class="search-wrap" for="search">
-            <span>Search</span>
-            <input
-              id="search"
-              type="search"
-              placeholder="Find commands, prompts, or workflows…"
-              autocomplete="off"
-            />
-          </label>
-          <fieldset class="filters" aria-label="Filter cards">
-            <legend>Show</legend>
-            <label><input type="checkbox" value="app" checked /> App</label>
-            <label><input type="checkbox" value="cli" checked /> CLI</label>
-            <label
-              ><input type="checkbox" value="workflow" checked /> Workflow</label
-            >
-          </fieldset>
-          <button id="theme-toggle" class="ghost-btn" type="button">
-            Toggle theme
-          </button>
+          <div class="search-box">
+            <svg class="search-icon" viewBox="0 0 20 20" fill="currentColor" width="18" height="18" aria-hidden="true"><path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd"/></svg>
+            <input id="search" type="search" placeholder="Search features, commands, prompts…" autocomplete="off" aria-label="Search" />
+            <kbd class="search-kbd">/</kbd>
+          </div>
+
+          <div class="filter-row">
+            <fieldset class="pill-filters" aria-label="Filter by product">
+              <button class="pill active" data-filter="all">All</button>
+              <button class="pill" data-filter="app">App</button>
+              <button class="pill" data-filter="cli">CLI</button>
+            </fieldset>
+            <fieldset class="pill-filters" aria-label="Filter by status">
+              <button class="pill active" data-filter-status="all">Any status</button>
+              <button class="pill" data-filter-status="ga"><span class="badge badge-ga">GA</span></button>
+              <button class="pill" data-filter-status="preview"><span class="badge badge-preview">Preview</span></button>
+              <button class="pill" data-filter-status="beta"><span class="badge badge-beta">Beta</span></button>
+            </fieldset>
+            <button id="theme-toggle" class="icon-btn" type="button" aria-label="Toggle dark mode">
+              <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+              <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+            </button>
+          </div>
         </div>
       </div>
     </header>
 
-    <main id="content" class="layout">
-      <aside class="toc" aria-label="Section navigation">
-        <h2>Quick Nav</h2>
-        <a href="#getting-started">Getting started</a>
-        <a href="#app-cheatsheet">Codex App cheatsheet</a>
-        <a href="#cli-cheatsheet">Codex CLI cheatsheet</a>
-        <a href="#prompt-patterns">Prompt patterns</a>
-        <a href="#git-workflows">Git + PR workflows</a>
+    <!-- ════ MAIN ════ -->
+    <main id="content" class="main-grid">
+
+      <!-- Sidebar nav -->
+      <aside class="sidebar" aria-label="Section navigation">
+        <nav class="sidebar-nav">
+          <h2 class="sidebar-heading">Navigate</h2>
+          <a href="#overview" class="nav-link active" data-section="overview">Overview</a>
+          <a href="#app-core" class="nav-link" data-section="app-core">App — Core Features</a>
+          <a href="#app-tasks" class="nav-link" data-section="app-tasks">App — Task Types</a>
+          <a href="#app-environment" class="nav-link" data-section="app-environment">App — Environment</a>
+          <a href="#app-workflows" class="nav-link" data-section="app-workflows">App — Workflows</a>
+          <a href="#cli-install" class="nav-link" data-section="cli-install">CLI — Install &amp; Config</a>
+          <a href="#cli-commands" class="nav-link" data-section="cli-commands">CLI — Commands</a>
+          <a href="#cli-modes" class="nav-link" data-section="cli-modes">CLI — Approval Modes</a>
+          <a href="#cli-features" class="nav-link" data-section="cli-features">CLI — Features</a>
+          <a href="#prompt-patterns" class="nav-link" data-section="prompt-patterns">Prompt Patterns</a>
+          <a href="#tips" class="nav-link" data-section="tips">Tips &amp; Best Practices</a>
+        </nav>
       </aside>
 
-      <section class="content">
-        <section id="getting-started">
-          <h2>Getting started</h2>
+      <!-- Content -->
+      <div class="content-area">
+        <p class="results-count" aria-live="polite"></p>
+
+        <!-- ──── Overview ──── -->
+        <section id="overview" class="section" data-section-id="overview">
+          <h2 class="section-title">Overview</h2>
           <div class="card-grid">
-            <article class="card" data-tags="workflow cli app setup">
-              <h3>1) Keep asks specific</h3>
-              <p>
-                Include repo, goal, constraints, and expected output format for
-                better results.
-              </p>
+
+            <article class="card card-highlight" data-tags="app" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">App</span>
+              </div>
+              <h3>What is Codex App?</h3>
+              <p>Codex is a cloud-based software engineering agent inside ChatGPT. It can read your codebase, write and edit code across multiple files, run tests, lint, and create pull requests — all in a sandboxed cloud environment.</p>
             </article>
-            <article class="card" data-tags="workflow cli app">
-              <h3>2) Iterate in small steps</h3>
-              <p>
-                Ask for a plan first, then implement in chunks and validate each
-                change.
-              </p>
+
+            <article class="card card-highlight" data-tags="cli" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">CLI</span>
+              </div>
+              <h3>What is Codex CLI?</h3>
+              <p>Codex CLI is an open-source, lightweight coding agent that runs in your terminal. It reads, edits, and executes code in a sandboxed local environment with configurable approval modes and multi-provider support.</p>
             </article>
-            <article class="card" data-tags="workflow cli app">
-              <h3>3) Validate before merge</h3>
-              <p>
-                Run tests/lint/build and review diffs before creating a pull
-                request.
-              </p>
+
+            <article class="card" data-tags="app" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">App</span>
+              </div>
+              <h3>Availability</h3>
+              <p>Available to ChatGPT <strong>Pro</strong>, <strong>Plus</strong>, <strong>Team</strong>, <strong>Enterprise</strong>, and <strong>Edu</strong> users with a connected GitHub account.</p>
             </article>
+
+            <article class="card" data-tags="cli" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">CLI</span>
+              </div>
+              <h3>Requirements</h3>
+              <p>Node.js ≥ 22, macOS or Linux (Windows via WSL2). Requires an API key from OpenAI (or compatible providers like Azure, Ollama, etc.).</p>
+            </article>
+
           </div>
         </section>
 
-        <section id="app-cheatsheet">
-          <h2>Codex App cheatsheet</h2>
+        <!-- ──── App — Core Features ──── -->
+        <section id="app-core" class="section" data-section-id="app-core">
+          <h2 class="section-title">App — Core Features</h2>
           <div class="card-grid">
-            <article class="card" data-tags="app workflow prompts">
-              <h3>Best prompt starter</h3>
-              <pre><code>Goal:
-Constraints:
-Definition of done:
-Files involved:</code></pre>
-              <button class="copy-btn" data-copy="Goal:
-Constraints:
-Definition of done:
-Files involved:">Copy</button>
+
+            <article class="card" data-tags="app" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">App</span>
+              </div>
+              <h3>GitHub Integration</h3>
+              <p>Connect any GitHub repository. Codex clones it into a sandboxed VM, works on your code, and pushes changes via branches or pull requests.</p>
             </article>
 
-            <article class="card" data-tags="app workflow">
-              <h3>Ask for planning mode</h3>
-              <pre><code>Create a step-by-step plan before coding.
-Focus on minimal, safe changes.</code></pre>
-              <button
-                class="copy-btn"
-                data-copy="Create a step-by-step plan before coding.
-Focus on minimal, safe changes."
-              >
-                Copy
-              </button>
+            <article class="card" data-tags="app" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">App</span>
+              </div>
+              <h3>Multi-file Editing</h3>
+              <p>Edit multiple files across your project simultaneously. Codex understands project structure and makes coordinated changes.</p>
             </article>
 
-            <article class="card" data-tags="app workflow review">
-              <h3>Ask for review summary</h3>
-              <pre><code>Summarize the final diff:
-- What changed
-- Why
-- Risks and rollback</code></pre>
-              <button
-                class="copy-btn"
-                data-copy="Summarize the final diff:
-- What changed
-- Why
-- Risks and rollback"
-              >
-                Copy
-              </button>
+            <article class="card" data-tags="app" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">App</span>
+              </div>
+              <h3>Run Tests &amp; Linters</h3>
+              <p>Codex can execute your project's test suite, linters, and build commands inside its sandbox to validate changes before creating PRs.</p>
             </article>
+
+            <article class="card" data-tags="app" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">App</span>
+              </div>
+              <h3>Pull Request Creation</h3>
+              <p>Automatically creates a GitHub PR with a clear title, description, and clean diff. Review and merge when ready.</p>
+            </article>
+
+            <article class="card" data-tags="app" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">App</span>
+              </div>
+              <h3>Parallel Tasks</h3>
+              <p>Run multiple Codex tasks in parallel. Each gets its own sandboxed environment so they don't interfere with each other.</p>
+            </article>
+
+            <article class="card" data-tags="app" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">App</span>
+              </div>
+              <h3>Sandboxed Cloud Environment</h3>
+              <p>Each task runs in an isolated microVM with its own filesystem, network, and processes. Your local machine and production code are never at risk.</p>
+            </article>
+
+            <article class="card" data-tags="app" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">App</span>
+              </div>
+              <h3>Internet Access in Sandbox</h3>
+              <p>Sandboxed environments can install dependencies from package registries (npm, pip, etc.) with allow-listed network access.</p>
+            </article>
+
+            <article class="card" data-tags="app" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">App</span>
+              </div>
+              <h3>Task History &amp; Logs</h3>
+              <p>Full trace of every task including terminal output, file diffs, and reasoning steps. Inspect what Codex did at every step.</p>
+            </article>
+
           </div>
         </section>
 
-        <section id="cli-cheatsheet">
-          <h2>Codex CLI cheatsheet</h2>
+        <!-- ──── App — Task Types ──── -->
+        <section id="app-tasks" class="section" data-section-id="app-tasks">
+          <h2 class="section-title">App — Task Types</h2>
           <div class="card-grid">
-            <article class="card" data-tags="cli workflow">
-              <h3>Start in current repo</h3>
+
+            <article class="card" data-tags="app" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">App</span>
+              </div>
+              <h3>Feature Implementation</h3>
+              <p>Describe a feature in natural language. Codex plans the approach, writes the code across files, adds tests, and opens a PR.</p>
+            </article>
+
+            <article class="card" data-tags="app" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">App</span>
+              </div>
+              <h3>Bug Fixes</h3>
+              <p>Paste an error or describe the bug. Codex investigates, identifies root cause, applies a fix, and verifies with tests.</p>
+            </article>
+
+            <article class="card" data-tags="app" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">App</span>
+              </div>
+              <h3>Refactoring</h3>
+              <p>Request structural improvements without changing behavior. Codex preserves API contracts and runs tests to confirm.</p>
+            </article>
+
+            <article class="card" data-tags="app" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">App</span>
+              </div>
+              <h3>Write Tests</h3>
+              <p>Generate unit tests, integration tests, or test scaffolding for existing code. Codex runs them to confirm they pass.</p>
+            </article>
+
+            <article class="card" data-tags="app" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">App</span>
+              </div>
+              <h3>Documentation</h3>
+              <p>Generate or update README files, API docs, inline comments, and architectural documentation from your codebase.</p>
+            </article>
+
+            <article class="card" data-tags="app" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">App</span>
+              </div>
+              <h3>Code Review &amp; Q&amp;A</h3>
+              <p>Ask questions about your codebase. Codex reads the repo and provides answers with file references, or reviews a diff for issues.</p>
+            </article>
+
+            <article class="card" data-tags="app" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">App</span>
+              </div>
+              <h3>Migration &amp; Upgrades</h3>
+              <p>Migrate between frameworks, upgrade dependencies, or convert code from one language/pattern to another.</p>
+            </article>
+
+          </div>
+        </section>
+
+        <!-- ──── App — Environment ──── -->
+        <section id="app-environment" class="section" data-section-id="app-environment">
+          <h2 class="section-title">App — Environment Setup</h2>
+          <div class="card-grid">
+
+            <article class="card" data-tags="app" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">App</span>
+              </div>
+              <h3>codex-setup-steps.yml</h3>
+              <p>Define setup commands in <code>.github/codex-setup-steps.yml</code> (or <code>copilot-setup-steps.yml</code>) to install dependencies, configure toolchains, and prepare the sandbox before each task.</p>
+              <pre><code>steps:
+  - name: Install deps
+    run: npm ci
+  - name: Build
+    run: npm run build</code></pre>
+              <button class="copy-btn" data-copy="steps:
+  - name: Install deps
+    run: npm ci
+  - name: Build
+    run: npm run build">Copy</button>
+            </article>
+
+            <article class="card" data-tags="app" data-status="preview">
+              <div class="card-head">
+                <span class="badge badge-preview">Preview</span>
+                <span class="card-product">App</span>
+              </div>
+              <h3>AGENTS.md</h3>
+              <p>Place an <code>AGENTS.md</code> file at the repo root or in subdirectories to give Codex persistent instructions — coding conventions, architecture rules, or review guidelines.</p>
+              <pre><code># AGENTS.md
+- Use TypeScript strict mode
+- Follow conventional commits
+- Always run tests before PR</code></pre>
+              <button class="copy-btn" data-copy="# AGENTS.md
+- Use TypeScript strict mode
+- Follow conventional commits
+- Always run tests before PR">Copy</button>
+            </article>
+
+            <article class="card" data-tags="app" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">App</span>
+              </div>
+              <h3>Custom Docker Images</h3>
+              <p>Specify a custom container image in setup steps for specialized toolchains (Rust, Go, Java, etc.) beyond the default environment.</p>
+            </article>
+
+            <article class="card" data-tags="app" data-status="preview">
+              <div class="card-head">
+                <span class="badge badge-preview">Preview</span>
+                <span class="card-product">App</span>
+              </div>
+              <h3>Secrets &amp; Env Variables</h3>
+              <p>Pass repository secrets and environment variables to the sandbox so Codex can authenticate with private registries or services during setup.</p>
+            </article>
+
+          </div>
+        </section>
+
+        <!-- ──── App — Workflows ──── -->
+        <section id="app-workflows" class="section" data-section-id="app-workflows">
+          <h2 class="section-title">App — Workflows</h2>
+          <div class="card-grid">
+
+            <article class="card" data-tags="app" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">App</span>
+              </div>
+              <h3>Task → Branch → PR</h3>
+              <p>The standard workflow: describe a task → Codex creates a branch → makes changes → opens a PR for review. You remain in control of what gets merged.</p>
+            </article>
+
+            <article class="card" data-tags="app" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">App</span>
+              </div>
+              <h3>Ask for a Plan First</h3>
+              <p>Prefix your task with "create a plan" to get a step-by-step approach before any code changes. Review and approve before implementation.</p>
+              <pre><code>Create a plan for adding OAuth login.
+Don't write code yet.</code></pre>
+              <button class="copy-btn" data-copy="Create a plan for adding OAuth login. Don't write code yet.">Copy</button>
+            </article>
+
+            <article class="card" data-tags="app" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">App</span>
+              </div>
+              <h3>Iterative Refinement</h3>
+              <p>Follow up on a task with corrections. Codex keeps context and can refine its changes based on your feedback.</p>
+            </article>
+
+            <article class="card" data-tags="app" data-status="preview">
+              <div class="card-head">
+                <span class="badge badge-preview">Preview</span>
+                <span class="card-product">App</span>
+              </div>
+              <h3>Issue-triggered Tasks</h3>
+              <p>Assign a GitHub issue to Codex and it will automatically work on the task, referencing the issue in its PR.</p>
+            </article>
+
+            <article class="card" data-tags="app" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">App</span>
+              </div>
+              <h3>Review Diff Before Merge</h3>
+              <p>Always review the generated diff. Codex shows every file changed with clear before/after comparisons.</p>
+            </article>
+
+          </div>
+        </section>
+
+        <!-- ──── CLI — Install & Config ──── -->
+        <section id="cli-install" class="section" data-section-id="cli-install">
+          <h2 class="section-title">CLI — Install &amp; Config</h2>
+          <div class="card-grid">
+
+            <article class="card" data-tags="cli" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">CLI</span>
+              </div>
+              <h3>Install via npm</h3>
+              <pre><code>npm install -g @openai/codex</code></pre>
+              <button class="copy-btn" data-copy="npm install -g @openai/codex">Copy</button>
+            </article>
+
+            <article class="card" data-tags="cli" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">CLI</span>
+              </div>
+              <h3>Set API Key</h3>
+              <pre><code>export OPENAI_API_KEY="sk-..."</code></pre>
+              <button class="copy-btn" data-copy='export OPENAI_API_KEY="sk-..."'>Copy</button>
+              <p class="card-note">Add to <code>~/.bashrc</code> or <code>~/.zshrc</code> for persistence.</p>
+            </article>
+
+            <article class="card" data-tags="cli" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">CLI</span>
+              </div>
+              <h3>Config File</h3>
+              <p>Create <code>~/.codex/config.yaml</code> for default settings.</p>
+              <pre><code>model: o4-mini
+approval_mode: suggest
+providers:
+  - name: openai</code></pre>
+              <button class="copy-btn" data-copy="model: o4-mini
+approval_mode: suggest
+providers:
+  - name: openai">Copy</button>
+            </article>
+
+            <article class="card" data-tags="cli" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">CLI</span>
+              </div>
+              <h3>Project Instructions</h3>
+              <p>Create <code>~/.codex/instructions.md</code> or a project-local <code>AGENTS.md</code> to give Codex persistent context about coding standards and conventions.</p>
+            </article>
+
+          </div>
+        </section>
+
+        <!-- ──── CLI — Commands ──── -->
+        <section id="cli-commands" class="section" data-section-id="cli-commands">
+          <h2 class="section-title">CLI — Commands</h2>
+          <div class="card-grid">
+
+            <article class="card" data-tags="cli" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">CLI</span>
+              </div>
+              <h3>Interactive Mode</h3>
               <pre><code>codex</code></pre>
+              <p>Launch interactive REPL in the current directory. Chat with Codex and approve changes one at a time.</p>
               <button class="copy-btn" data-copy="codex">Copy</button>
             </article>
 
-            <article class="card" data-tags="cli workflow prompts">
-              <h3>Give a focused task</h3>
-              <pre><code>codex "Implement feature X with tests. Keep changes minimal."</code></pre>
-              <button
-                class="copy-btn"
-                data-copy='codex "Implement feature X with tests. Keep changes minimal."'
-              >
-                Copy
-              </button>
+            <article class="card" data-tags="cli" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">CLI</span>
+              </div>
+              <h3>One-shot Prompt</h3>
+              <pre><code>codex "Add input validation to the signup form"</code></pre>
+              <p>Pass a task directly as an argument for non-interactive execution.</p>
+              <button class="copy-btn" data-copy='codex "Add input validation to the signup form"'>Copy</button>
             </article>
 
-            <article class="card" data-tags="cli workflow">
-              <h3>Ask for a plan first</h3>
-              <pre><code>codex "Create a plan only for adding OAuth login."</code></pre>
-              <button
-                class="copy-btn"
-                data-copy='codex "Create a plan only for adding OAuth login."'
-              >
-                Copy
-              </button>
+            <article class="card" data-tags="cli" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">CLI</span>
+              </div>
+              <h3>Choose Model</h3>
+              <pre><code>codex --model o4-mini "Explain this function"
+codex --model o3 "Refactor auth module"</code></pre>
+              <button class="copy-btn" data-copy='codex --model o4-mini "Explain this function"'>Copy</button>
             </article>
 
-            <article class="card" data-tags="cli workflow">
-              <h3>Request implementation</h3>
-              <pre><code>codex "Now implement the approved plan and run existing tests."</code></pre>
-              <button
-                class="copy-btn"
-                data-copy='codex "Now implement the approved plan and run existing tests."'
-              >
-                Copy
-              </button>
+            <article class="card" data-tags="cli" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">CLI</span>
+              </div>
+              <h3>Full-auto Mode</h3>
+              <pre><code>codex --approval-mode full-auto "Fix all lint errors"</code></pre>
+              <p>Automatically apply all changes and run commands without manual approval.</p>
+              <button class="copy-btn" data-copy='codex --approval-mode full-auto "Fix all lint errors"'>Copy</button>
             </article>
 
-            <article class="card" data-tags="cli workflow">
-              <h3>Diff-oriented prompt</h3>
-              <pre><code>codex "Review current git diff and suggest improvements."</code></pre>
-              <button
-                class="copy-btn"
-                data-copy='codex "Review current git diff and suggest improvements."'
-              >
-                Copy
-              </button>
+            <article class="card" data-tags="cli" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">CLI</span>
+              </div>
+              <h3>Quiet Mode</h3>
+              <pre><code>codex -q "What does this repo do?"</code></pre>
+              <p>Suppress extra output. Great for piping results to other tools.</p>
+              <button class="copy-btn" data-copy='codex -q "What does this repo do?"'>Copy</button>
             </article>
 
-            <article class="card" data-tags="cli workflow">
-              <h3>Release checklist prompt</h3>
-              <pre><code>codex "Generate a release checklist from changed files."</code></pre>
-              <button
-                class="copy-btn"
-                data-copy='codex "Generate a release checklist from changed files."'
-              >
-                Copy
-              </button>
+            <article class="card" data-tags="cli" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">CLI</span>
+              </div>
+              <h3>Pipe Context In</h3>
+              <pre><code>cat error.log | codex "Diagnose this error"
+git diff | codex "Review this diff"</code></pre>
+              <button class="copy-btn" data-copy='cat error.log | codex "Diagnose this error"'>Copy</button>
             </article>
+
           </div>
         </section>
 
-        <section id="prompt-patterns">
-          <h2>Prompt patterns that work</h2>
+        <!-- ──── CLI — Approval Modes ──── -->
+        <section id="cli-modes" class="section" data-section-id="cli-modes">
+          <h2 class="section-title">CLI — Approval Modes</h2>
+          <div class="card-grid three-col">
+
+            <article class="card card-mode" data-tags="cli" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">CLI</span>
+              </div>
+              <h3>🔒 Suggest</h3>
+              <p>Default mode. Codex proposes changes but <strong>never writes to disk</strong> until you approve each one. Safest option.</p>
+              <pre><code>codex --approval-mode suggest</code></pre>
+              <button class="copy-btn" data-copy="codex --approval-mode suggest">Copy</button>
+            </article>
+
+            <article class="card card-mode" data-tags="cli" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">CLI</span>
+              </div>
+              <h3>✏️ Auto-edit</h3>
+              <p>File edits are applied automatically. Shell commands still require approval. Good balance of speed and safety.</p>
+              <pre><code>codex --approval-mode auto-edit</code></pre>
+              <button class="copy-btn" data-copy="codex --approval-mode auto-edit">Copy</button>
+            </article>
+
+            <article class="card card-mode" data-tags="cli" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">CLI</span>
+              </div>
+              <h3>⚡ Full-auto</h3>
+              <p>Both file edits and commands run automatically in the sandbox. Maximum speed, best for trusted tasks like linting or test generation.</p>
+              <pre><code>codex --approval-mode full-auto</code></pre>
+              <button class="copy-btn" data-copy="codex --approval-mode full-auto">Copy</button>
+            </article>
+
+          </div>
+        </section>
+
+        <!-- ──── CLI — Features ──── -->
+        <section id="cli-features" class="section" data-section-id="cli-features">
+          <h2 class="section-title">CLI — Features</h2>
           <div class="card-grid">
-            <article class="card" data-tags="app cli workflow prompts">
-              <h3>Bug fix prompt</h3>
-              <pre><code>Investigate failing test &lt;name&gt;.
+
+            <article class="card" data-tags="cli" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">CLI</span>
+              </div>
+              <h3>Sandboxed Execution</h3>
+              <p>All commands run in a network-disabled sandbox with directory-scoped file access. Codex cannot access files outside the project or make network calls.</p>
+            </article>
+
+            <article class="card" data-tags="cli" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">CLI</span>
+              </div>
+              <h3>Multi-provider Support</h3>
+              <p>Works with OpenAI, Azure OpenAI, OpenRouter, Ollama, and any OpenAI-compatible API. Switch providers in config or via environment variables.</p>
+              <pre><code>export OPENAI_BASE_URL="https://..."</code></pre>
+              <button class="copy-btn" data-copy='export OPENAI_BASE_URL="https://..."'>Copy</button>
+            </article>
+
+            <article class="card" data-tags="cli" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">CLI</span>
+              </div>
+              <h3>File Watching &amp; Context</h3>
+              <p>Codex reads your project files to understand context. It tracks the current directory and respects <code>.gitignore</code> patterns.</p>
+            </article>
+
+            <article class="card" data-tags="cli" data-status="beta">
+              <div class="card-head">
+                <span class="badge badge-beta">Beta</span>
+                <span class="card-product">CLI</span>
+              </div>
+              <h3>MCP Tool Integration</h3>
+              <p>Connect Model Context Protocol (MCP) servers to give Codex CLI access to external tools like databases, APIs, and custom actions.</p>
+            </article>
+
+            <article class="card" data-tags="cli" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">CLI</span>
+              </div>
+              <h3>Open Source</h3>
+              <p>Fully open source under the Apache 2.0 license. Inspect, fork, extend, or self-host as needed.</p>
+            </article>
+
+            <article class="card" data-tags="cli" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">CLI</span>
+              </div>
+              <h3>Multimodal Input</h3>
+              <p>Pass images (screenshots, diagrams) alongside text prompts for visual context when describing UI changes or bugs.</p>
+            </article>
+
+          </div>
+        </section>
+
+        <!-- ──── Prompt Patterns ──── -->
+        <section id="prompt-patterns" class="section" data-section-id="prompt-patterns">
+          <h2 class="section-title">Prompt Patterns</h2>
+          <div class="card-grid">
+
+            <article class="card" data-tags="app cli" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">App + CLI</span>
+              </div>
+              <h3>Structured Task Prompt</h3>
+              <pre><code>Goal: [what you want]
+Constraints: [limits]
+Definition of done: [acceptance criteria]
+Files involved: [specific paths]</code></pre>
+              <button class="copy-btn" data-copy="Goal: [what you want]
+Constraints: [limits]
+Definition of done: [acceptance criteria]
+Files involved: [specific paths]">Copy</button>
+            </article>
+
+            <article class="card" data-tags="app cli" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">App + CLI</span>
+              </div>
+              <h3>Bug Fix Prompt</h3>
+              <pre><code>Investigate failing test [name].
 Find root cause.
 Apply minimal fix.
 Run relevant tests.
 Summarize risk.</code></pre>
+              <button class="copy-btn" data-copy="Investigate failing test [name].
+Find root cause.
+Apply minimal fix.
+Run relevant tests.
+Summarize risk.">Copy</button>
             </article>
-            <article class="card" data-tags="app cli workflow prompts">
-              <h3>Refactor prompt</h3>
-              <pre><code>Refactor module &lt;path&gt; for readability only.
+
+            <article class="card" data-tags="app cli" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">App + CLI</span>
+              </div>
+              <h3>Refactor Prompt</h3>
+              <pre><code>Refactor module [path] for readability only.
 No behavior changes.
 Keep API stable.
 Run tests.</code></pre>
+              <button class="copy-btn" data-copy="Refactor module [path] for readability only.
+No behavior changes.
+Keep API stable.
+Run tests.">Copy</button>
             </article>
-            <article class="card" data-tags="app cli workflow prompts">
-              <h3>Feature prompt</h3>
-              <pre><code>Add &lt;feature&gt; behind a flag.
-Add tests and docs.
+
+            <article class="card" data-tags="app cli" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">App + CLI</span>
+              </div>
+              <h3>Feature Prompt</h3>
+              <pre><code>Add [feature] behind a feature flag.
+Add unit and integration tests.
+Update relevant docs.
 Avoid unrelated changes.</code></pre>
+              <button class="copy-btn" data-copy="Add [feature] behind a feature flag.
+Add unit and integration tests.
+Update relevant docs.
+Avoid unrelated changes.">Copy</button>
             </article>
+
+            <article class="card" data-tags="cli" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">CLI</span>
+              </div>
+              <h3>Diff Review Prompt</h3>
+              <pre><code>codex "Review current git diff and suggest improvements.
+Focus on security, performance, and readability."</code></pre>
+              <button class="copy-btn" data-copy='codex "Review current git diff and suggest improvements. Focus on security, performance, and readability."'>Copy</button>
+            </article>
+
+            <article class="card" data-tags="app cli" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">App + CLI</span>
+              </div>
+              <h3>Migration Prompt</h3>
+              <pre><code>Migrate [module] from [old] to [new].
+Preserve all existing tests.
+Update imports and types.
+Verify build passes.</code></pre>
+              <button class="copy-btn" data-copy="Migrate [module] from [old] to [new].
+Preserve all existing tests.
+Update imports and types.
+Verify build passes.">Copy</button>
+            </article>
+
           </div>
         </section>
 
-        <section id="git-workflows">
-          <h2>Git + PR workflows</h2>
+        <!-- ──── Tips & Best Practices ──── -->
+        <section id="tips" class="section" data-section-id="tips">
+          <h2 class="section-title">Tips &amp; Best Practices</h2>
           <div class="card-grid">
-            <article class="card" data-tags="workflow cli">
-              <h3>Inspect status + diff</h3>
-              <pre><code>git status
-git diff --stat
-git diff</code></pre>
+
+            <article class="card" data-tags="app cli" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">App + CLI</span>
+              </div>
+              <h3>Be Specific</h3>
+              <p>Include the repo, goal, constraints, and expected output format. Vague prompts lead to vague results.</p>
             </article>
-            <article class="card" data-tags="workflow cli">
-              <h3>Create clean commit</h3>
-              <pre><code>git add -p
-git commit -m "feat: concise description"</code></pre>
+
+            <article class="card" data-tags="app cli" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">App + CLI</span>
+              </div>
+              <h3>Iterate in Small Steps</h3>
+              <p>Ask for a plan first, then implement in chunks. Validate each change before moving on.</p>
             </article>
-            <article class="card" data-tags="workflow cli">
-              <h3>Pre-PR self-check</h3>
-              <pre><code># run project checks
-# review changed files
-# verify docs if behavior changed</code></pre>
+
+            <article class="card" data-tags="app cli" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">App + CLI</span>
+              </div>
+              <h3>Validate Before Merge</h3>
+              <p>Run tests, lint, and build. Review every diff line. Check for unintended changes or regressions.</p>
             </article>
+
+            <article class="card" data-tags="app" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">App</span>
+              </div>
+              <h3>Use Setup Steps</h3>
+              <p>Configure <code>codex-setup-steps.yml</code> so Codex's environment matches yours — same deps, same toolchain, same config.</p>
+            </article>
+
+            <article class="card" data-tags="cli" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">CLI</span>
+              </div>
+              <h3>Start with Suggest Mode</h3>
+              <p>Use <code>suggest</code> mode until you're comfortable. Graduate to <code>auto-edit</code> or <code>full-auto</code> for trusted tasks.</p>
+            </article>
+
+            <article class="card" data-tags="app cli" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">App + CLI</span>
+              </div>
+              <h3>Provide AGENTS.md</h3>
+              <p>Write project-specific instructions in <code>AGENTS.md</code>. Include coding style, test patterns, architectural decisions, and review criteria.</p>
+            </article>
+
+            <article class="card" data-tags="cli" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">CLI</span>
+              </div>
+              <h3>Pipe In Context</h3>
+              <p>Feed logs, errors, or diffs into Codex via stdin for richer context: <code>cat error.log | codex "fix this"</code></p>
+            </article>
+
+            <article class="card" data-tags="app cli" data-status="ga">
+              <div class="card-head">
+                <span class="badge badge-ga">GA</span>
+                <span class="card-product">App + CLI</span>
+              </div>
+              <h3>One Task at a Time</h3>
+              <p>Keep prompts focused on a single concern. Break large changes into smaller, reviewable units.</p>
+            </article>
+
           </div>
         </section>
-      </section>
+
+      </div>
     </main>
 
+    <!-- ════ FOOTER ════ -->
     <footer class="footer">
-      <p>
-        Built for
-        <a href="https://yaravind.github.io/openai-codex-cheatsheet/"
-          >yaravind/openai-codex-cheatsheet</a
-        >.
-      </p>
+      <div class="footer-inner">
+        <p>Built with care for the Codex community.</p>
+        <p class="footer-links">
+          <a href="https://github.com/yaravind/openai-codex-cheatsheet">GitHub</a>
+          <span class="footer-dot">·</span>
+          <a href="https://openai.com/codex">Codex by OpenAI</a>
+        </p>
+      </div>
     </footer>
 
     <script src="./script.js"></script>
